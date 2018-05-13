@@ -21,23 +21,27 @@ cat << EOF > mysql-setup.sql
 ALTER USER 'root'@'localhost' IDENTIFIED BY 'Secur1ty!'; 
 uninstall plugin validate_password;
 
-CREATE DATABASE druid DEFAULT CHARACTER SET utf8; 
+CREATE DATABASE druid DEFAULT CHARACTER SET utf8;
 CREATE DATABASE superset DEFAULT CHARACTER SET utf8; 
 CREATE DATABASE registry ; 
 CREATE DATABASE streamline DEFAULT CHARACTER SET utf8; 
 CREATE DATABASE ranger;
+CREATE DATABASE hive ; 
 
 CREATE USER 'druid'@'%' IDENTIFIED BY 'StrongPassword'; 
 CREATE USER 'superset'@'%' IDENTIFIED BY 'StrongPassword'; 
 CREATE USER 'registry'@'%' IDENTIFIED BY 'StrongPassword'; 
 CREATE USER 'streamline'@'%' IDENTIFIED BY 'StrongPassword';
-CREATE USER 'rangeradmin'@'%' IDENTIFIED BY 'StrongPassword'; 
+CREATE USER 'rangeradmin'@'%' IDENTIFIED BY 'StrongPassword';
+CREATE USER 'hive'@'%' IDENTIFIED BY 'StrongPassword';
 
 GRANT ALL PRIVILEGES ON *.* TO 'druid'@'%' WITH GRANT OPTION; 
 GRANT ALL PRIVILEGES ON *.* TO 'superset'@'%' WITH GRANT OPTION; 
 GRANT ALL PRIVILEGES ON registry.* TO 'registry'@'%' WITH GRANT OPTION ; 
 GRANT ALL PRIVILEGES ON streamline.* TO 'streamline'@'%' WITH GRANT OPTION ; 
 GRANT ALL PRIVILEGES ON ranger.* TO 'rangeradmin'@'%' WITH GRANT OPTION ; 
+GRANT ALL PRIVILEGES ON hive.* TO 'hive'@'%' WITH GRANT OPTION ; 
+
 commit; 
 EOF
 
